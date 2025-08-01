@@ -33,9 +33,11 @@ const addProduct = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
     try {
-        console.log('Fields:', req.fields);
-
-        const { name, description, price, category, quantity, brand } = req.fields || {};
+        console.log("req.params.id:", req.params.id);
+        console.log("req.fields:", req.fields);
+        console.log("req.files:", req.files);
+        
+        const { name, description, price, category, quantity, brand } = req.body;
         const { image } = req.files || {};
 
         const product = await Product.findById(req.params.id);
@@ -66,14 +68,14 @@ const updateProduct = asyncHandler(async (req, res) => {
 
 
 const deleteProduct = asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findByIdAndDelete(req.params.id);
 
     if (!product) {
         res.status(404);
         throw new Error("Product not found");
     }
 
-    await product.deleteOne();
+    // await product.deleteOne();        
     res.status(200).json({ message: "Product deleted successfully" });
 });
 
@@ -131,41 +133,47 @@ const fetchAllProducts = asyncHandler(async (req, res) => {
 });
 
 
-const addProductReview = asyncHandler(async (req, res)=>{
+const addProductReview = asyncHandler(async (req, res) => {
     try {
-        const {rating, comment} = req.body;
-        res.status(201).json({message: "Product review added"});
+        console.log("Incoming review request:");
+        console.log("Params ID:", req.params.id);
+        console.log("Body:", req.body);
+
+        const { rating, comment } = req.body;
         const product = await Product.findById(req.params.id);
 
-        if(product){
-            const alreadyReviewed = product.reviews.find(r=> r.user.toString()===req.user._id.toString());
+        if (product) {
+            const alreadyReviewed = product.reviews.find(
+                r => r.user.toString() === req.user._id.toString()
+            );
 
-            if(alreadyReviewed){
-                res.status(400);
-                throw new Error("Product already reviewed");
+            if (alreadyReviewed) {
+                return res.status(400).json({ message: "Product already reviewed" });
             }
+
             const review = {
                 name: req.user.username,
                 rating: Number(rating),
                 comment,
-                user: req.user._id
-            }
+                user: req.user._id,
+            };
 
             product.reviews.push(review);
-            product.numReviews= product.reviews.length();
-            product.rating = product.reviews.reduce((acc, item)=> item.rating + acc, 0) / product.reviews.length
+            product.numReviews = product.reviews.length;
+            product.rating =
+                product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length
 
-            await product.save();
-            res.status(201).json({message: "Review added"});
-        } else{
-            res.status(404);
-            throw new Error("Product not found");
+                await product.save();
+                res.status(201).json({message: "Review added"});
+            } else{
+                return res.status(400).json({ message: "Product already reviewed" });
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(400).json(error.message);
         }
-    } catch (error) {
-        console.error(error);
-        res.status(400).json(error.message);
-    }
-})
+    })
+
 
 const fetchTopProducts = asyncHandler(async (req, res)=>{
     try {
@@ -187,4 +195,20 @@ const fetchNewProducts = asyncHandler(async(req, res)=>{
     }
 })
 
-export { addProduct, updateProduct, deleteProduct, fetchProducts, fetchProductById, fetchAllProducts, addProductReview, fetchTopProducts, fetchNewProducts };
+const filterProducts = asyncHandler(async (req, res)=>{
+    try {
+        const {checked, radio} = req.body
+
+        let args = {}
+        if(checked.length > 0) args.category = checked;
+        if(radio.length) args.price = {$gte: radio[0], $lte: radio[1]}
+
+        const products = await Product.find(args)
+        res.json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error: "Server Error"})
+    }
+})
+
+export { addProduct, updateProduct, deleteProduct, fetchProducts, fetchProductById, fetchAllProducts, addProductReview, fetchTopProducts, fetchNewProducts, filterProducts };

@@ -41,14 +41,13 @@ const UserList = () => {
       });
       setEditableUserId(null);
 
-      // Directly update the local `users` array after successful mutation
       const updatedUsers = users.map((user) =>
         user._id === id ? { ...user, username: editableUsername, email: editableEmail } : user
       );
 
       setEditableUsername('');
       setEditableEmail('');
-      refetch();  // Refetch the updated data from the server
+      refetch();
     } catch (error) {
       toast.error(error.data.message || error.error);
     }

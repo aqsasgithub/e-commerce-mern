@@ -68,7 +68,7 @@ const handleUpdate = async (e) => {
         formData.append('brand', brand);
         formData.append('countInStock', stock);
 
-        const { data } = await updateProduct({ productId: params._id, formData }).unwrap();
+        const { data } = await updateProduct({ productId: params._id, formData });
 
         if (data.error) {
             toast.error(data.error);
@@ -77,7 +77,7 @@ const handleUpdate = async (e) => {
             navigate("/admin/allproductslist");
         }
     } catch (error) {
-        console.error(error);
+        console.error(error.error);
         toast.error('Product Update failed, try again');
     }
 };

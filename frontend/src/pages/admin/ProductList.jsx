@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {useGetProductsQuery, useGetProductByIdQuery, useGetProductDetailsQuery, useAllProductsQuery, useCreateProductMutation, useUpdateProductMutation, useDeleteProductMutation, useAddReviewMutation, useGetTopProductsQuery, useGetNewProductsQuery, useUploadProductImageMutation} from '../../redux/api/productApiSlice.js';
+import { useCreateProductMutation,useUploadProductImageMutation} from '../../redux/api/productApiSlice.js';
 import {useFetchCategoriesQuery} from '../../redux/api/categoryApi.js';
 import { toast } from "react-toastify";
 import AdminMenu from "./AdminMenu.jsx";
@@ -69,7 +69,6 @@ const submitHandler = async (e) => {
         toast.error('Product creation failed, Try again');
     }
 }
-
 return <div className="container xl:mx-[9rem] sm:mx-[0]">
 <div className="flex flex-col md:flex-row">
 <AdminMenu />

@@ -44,7 +44,8 @@ const AllProducts = () => {
                                           {product?.name}
                                           </h5>
                                           <p className="text-gray-400 text-sm">
-                                          {product.createAt ? moment(product.createAt).format("MMMM Do YYYY") : 'Date not available'}
+                                          {/* {product.createAt ? moment(product.createAt).format("MMMM Do YYYY") : 'Date not available'} */}
+                                          {moment(product.createAt).format("MMMM Do YYYY")}
                                           </p>
                                       </div>
                                       <p className="text-gray-400 xl:w-[30rem] md:w-[20rem] sm:w-[10rem] text-sm mb-4">

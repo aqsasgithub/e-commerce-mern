@@ -78,7 +78,15 @@ getNewProducts: builder.query({
         url: `${PRODUCT_URL}/new`,
     }),
     keepUnusedDataFor: 5,
+    }),
+
+getFilteredProducts: builder.query({
+    query: ({checked, radio})=>({
+        url: `${PRODUCT_URL}/filtered-products`,
+        method: "POST",
+        body: {checked, radio},
     })
+})
 })
 });
 
@@ -93,5 +101,6 @@ export const {
     useAddReviewMutation,
     useGetTopProductsQuery,
     useGetNewProductsQuery,
-    useUploadProductImageMutation
+    useUploadProductImageMutation,
+    useGetFilteredProductsQuery
 } = productApiSlice;
