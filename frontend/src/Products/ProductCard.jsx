@@ -20,7 +20,12 @@ const ProductCard = ({p}) => {
         <Link to={`/product/${p._id}`}>
         <span className="absolute bottom-3 right-3 bg-pink-100 text-pink-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300">
             {p?.brand}</span>
-            <img src={p.image} alt={p.name} style={{height: '170px', objectFit: "cover"}} className="cursor-pointer w-full" />
+            <img
+  src={`${import.meta.env.VITE_API_BASE}/uploads/${p.image}`}
+  alt={p.name}
+  style={{ height: '170px', objectFit: 'cover' }}
+  className="cursor-pointer w-full"
+/>
             </Link>
             <HeartIcon product={p} />
     </section>

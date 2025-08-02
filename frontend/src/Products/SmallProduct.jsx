@@ -5,7 +5,11 @@ const SmallProduct = ({product}) => {
   return (
     <div className="w-[20rem] ml-[2rem] p-3">
       <div className="relative">
-        <img src={product.image} alt={product.name} className="h-auto rounded" />
+      <img
+  src={`${import.meta.env.VITE_API_BASE}/uploads/${product.image}`}
+  alt={product.name}
+  className="h-auto rounded"
+/>
       <HeartIcon product={product} />
       <div className="p-5">
         <Link to={`/product/${product._id}`}>

@@ -32,7 +32,7 @@ const Cart = () => {
             {cartItems.map((item)=>(
                 <div key={item._id} className="flex items-center mb-[1rem] pb-2">
                     <div className="w-[5rem] h-[5rem]">
-                        <img src={item.image} alt={item.name} className="w-full h-full object-cover rounded" />
+                        <img src={`${import.meta.env.VITE_API_BASE}/uploads/${item.image}`} alt={item.name} className="w-full h-full object-cover rounded" />
                     </div>
 
                     <div className="flex-1 ml-4">

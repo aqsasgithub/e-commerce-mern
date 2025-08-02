@@ -29,7 +29,11 @@ const ProductCarousel = () => {
             {
                 products.map(({image, _id, name, price, description, brand, createdAt, numReviews, rating, quatity, countInStock})=>(
                     <div key={_id}>
-                        <img src={image} alt={name} className="w-full rounded-lg object-cover h-[30rem]" />
+<img
+  src={`${import.meta.env.VITE_API_BASE}/uploads/${image}`}
+  alt={name}
+  className="w-full rounded-lg object-cover h-[30rem]"
+/>
                         <div className="flex justify-between w=[20rem]">
                             <div className="one">
                                 <h2>{name}</h2>

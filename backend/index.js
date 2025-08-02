@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import connectDB from './config/db.js';
 import cors from 'cors';
+import { fileURLToPath } from 'url';
 
 import userRoutes from './routes/userRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
@@ -34,7 +35,8 @@ app.use('/api/products', productRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/orders', orderRoutes);
 
-const __dirname = path.resolve();
-app.use('/uploads', formidable(),  express.static(path.join(__dirname + "/uploads")));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.listen(port, ()=> console.log(`Server is listening on port: ${port}`)); 

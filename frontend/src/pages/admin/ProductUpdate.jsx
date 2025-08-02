@@ -108,10 +108,15 @@ const handleDelete = async (e) => {
                 <div className="md:w-3/4 p-3">
                     <div className="h-12 ml-3">Update Product</div>
                     {image && (
-                        <div className="text-center">
-                            <img src={image} alt="product" className="block mx-auto max-h-[200px]" />
-                        </div>
-                    )}
+  <div className="text-center">
+    <img
+      src={`${import.meta.env.VITE_API_BASE}/uploads/${image}`}
+      alt="product"
+      className="block mx-auto max-h-[200px]"
+    />
+  </div>
+)}
+
                     <div className="mb-3 ml-3">
                         <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
                             {image ? image.name : 'Upload Image'}
