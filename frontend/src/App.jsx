@@ -5,6 +5,7 @@ import Navigation from './pages/auth/Navigation.jsx';
 import './index.css'
 
 function App() {
+  console.log("ENV TEST:", import.meta.env.VITE_API_BASE);
 
   return (
     <>
