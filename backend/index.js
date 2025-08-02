@@ -21,7 +21,7 @@ connectDB();
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173', // or '*' for all origins during dev
+    origin: 'https://688e4db05b713c00089baa16--mern-e-commercee.netlify.',
     credentials: true
   }));
 app.use(express.json());
