@@ -10,8 +10,8 @@ function App() {
     <>
     <ToastContainer />
     <Navigation />
-    <main className="py-3">
-      <Outlet></Outlet>
+    <main className="ml-[15%] hover:ml-[4%] transition-all duration-300">
+    <Outlet></Outlet>
     </main>
     </>
   )

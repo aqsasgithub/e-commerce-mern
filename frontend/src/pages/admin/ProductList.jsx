@@ -75,7 +75,7 @@ return <div className="container xl:mx-[9rem] sm:mx-[0]">
 <div className="md:w-3/4 p-3">
 <div className="h-12 ml-3">Create Product</div>
 {imageURL && (<div className="text-center">
-<img src={`${import.meta.env.VITE_API_BASE}/uploads/${imageURL}`} alt="product" className="block mx-auto max-h-[200px]" />
+<img src={`${import.meta.env.VITE_API_BASE}${imageURL}`} alt="product" className="block mx-auto max-h-[200px]" />
 </div>) }
 <div className="mb-3 ml-3">
     <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">

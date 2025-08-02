@@ -1,3 +1,5 @@
+@import 'flowbite';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,8 +7,19 @@
 body {
   background: #0f0f10;
   color: #fff;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
 }
+
 input, 
 textarea {
   color: #000;
+}
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
 }

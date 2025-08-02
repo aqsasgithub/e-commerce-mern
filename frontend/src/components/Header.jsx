@@ -12,20 +12,24 @@ const Header = () => {
         if(error){
             return <h1>ERROR</h1>
         }
-  return (<>
-  <div className="flex justify-around">
-    <div className="xl:block lg:hidden md:hidden sm:hidden">
-        <div className="grid grid-cols-2">
-            {data.map((product)=>{
-              return <div key={product._id}>
-                <SmallProduct product={product} />
-              </div>
-})}
+  return (
+    <>
+    <div className="flex sm-flex-col xl:flex-row gap-8 justify-between">
+      <div className="xl:block w-full xl:max-w-[50%]">
+        <div className="grid grid-cols-2 gap-4">
+          {data.map(product => (
+            <SmallProduct key={product._id} product={product} />
+          ))}
         </div>
+      </div>
+  
+      <div className="w-full xl:max-w-[50%] mx-auto">
+        <ProductCarousel />
+      </div>
     </div>
-    <ProductCarousel />
-  </div>
-  </>)
+  </>
+  
+  )
 }
 
 export default Header

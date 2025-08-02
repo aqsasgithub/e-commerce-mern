@@ -39,7 +39,7 @@ const AllProducts = () => {
                         {products.map((product) => (
                             <div key={product._id} className="block mb-4 overflow-hidden">
                                 <div className="flex">
-                                    <img src={`${import.meta.env.VITE_API_BASE}/uploads/${product.image}`} alt={product.name} className="w-[10rem] object-cover" />
+                                    <img src={`${import.meta.env.VITE_API_BASE}${product.image}`} alt={product.name} className="w-[10rem] object-cover" />
                                     <div className="p-4 flex flex-col justify-around">
                                         <div className="flex justify-between">
                                             <h5 className="text-xl font-semibold mb-2">

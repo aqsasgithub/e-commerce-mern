@@ -55,7 +55,7 @@ navigate('/cart');
     <div className="flex flex-wrap relatice items-between ml=[2rem] ml-[10rem]">
         <div>
         <img
-  src={`${import.meta.env.VITE_API_BASE}/uploads/${product.image}`}
+  src={`${import.meta.env.VITE_API_BASE}${product.image}`}
   alt={product.name}
   className="w-full xl:w-[50rem] lg:w-[45rem] md:w-[30rem] sm:w-[20rem] mr-[2rem]"
 />

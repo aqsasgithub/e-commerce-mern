@@ -4,6 +4,9 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/features/cart/cartSlice";
 import {toast} from "react-toastify";
 import HeartIcon from "./HeartIcon"
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 const ProductCard = ({p}) => {
     const dispatch = useDispatch();
@@ -15,17 +18,18 @@ const ProductCard = ({p}) => {
             autoClose: 2000,
           });
     }
-  return <div className="max-w-sm relative bg-[#1A1A1A] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  return <div className="max-w-sm w-full relative bg-[#1A1A1A] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
     <section className="relative">
         <Link to={`/product/${p._id}`}>
         <span className="absolute bottom-3 right-3 bg-pink-100 text-pink-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300">
             {p?.brand}</span>
             <img
-  src={`${import.meta.env.VITE_API_BASE}/uploads/${p.image}`}
+  src={`${import.meta.env.VITE_API_BASE}${p.image}`}
   alt={p.name}
-  style={{ height: '170px', objectFit: 'cover' }}
-  className="cursor-pointer w-full"
+  className="cursor-pointer w-full h-auto object-cover aspect-[16/9]"
 />
+
             </Link>
             <HeartIcon product={p} />
     </section>
@@ -39,9 +43,10 @@ const ProductCard = ({p}) => {
             currency: 'PKR',
         })}</p>
         </div>
-        <p className="md-3 font-normal text-[#CFCFCF]">
-            {p?.description?.substring(0, 60)}...
-        </p>
+        <p className="md-3 font-normal text-[#CFCFCF] truncate">
+  {p?.description}
+</p>
+
         <section className="flex justify-between items-center">
             <Link to={`/product/${p._id}`} className="inline-flex items-center mt-3 px-3 py-2 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800">Read More
             

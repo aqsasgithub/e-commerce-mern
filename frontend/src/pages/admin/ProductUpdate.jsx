@@ -110,7 +110,7 @@ const handleDelete = async (e) => {
                     {image && (
   <div className="text-center">
     <img
-      src={`${import.meta.env.VITE_API_BASE}/uploads/${image}`}
+      src={`${import.meta.env.VITE_API_BASE}${image}`}
       alt="product"
       className="block mx-auto max-h-[200px]"
     />
