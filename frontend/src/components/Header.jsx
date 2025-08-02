@@ -6,6 +6,8 @@ import ProductCarousel from "../Products/ProductCarousel";
 const Header = () => {
     const {data, isLoading, error} = useGetTopProductsQuery();
     console.log(data)
+    console.log("BASE_URL ENV:", import.meta.env.VITE_API_BASE);
+
         if(isLoading){
             return( <Loader />)
         }
