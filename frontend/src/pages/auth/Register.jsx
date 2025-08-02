@@ -51,19 +51,19 @@ const Register = ()=>{
             <form onSubmit={submitHandler} className="container w-[40rem]">
                 <div className="my-[2rem]">
                     <label htmlFor="name" className="block text-sm font-medium text-white">Name</label>
-                    <input type="text" id="name" className="mt-1 p-2 border-rounded w-full"  value={username} onChange={(e)=> setUsername(e.target.value)}></input>
+                    <input type="text" id="name" className="mt-1 p-2 rounded w-full"  value={username} onChange={(e)=> setUsername(e.target.value)}></input>
                 </div>
                 <div className="my-[2rem]">
                     <label htmlFor="email" className="block text-sm font-medium text-white">Email Address</label>
-                    <input type="email" id="email" className="mt-1 p-2 border-rounded w-full" value={email} onChange={(e)=> setEmail(e.target.value)} />
+                    <input type="email" id="email" className="mt-1 p-2 rounded w-full" value={email} onChange={(e)=> setEmail(e.target.value)} />
                 </div>
                 <div className="my-[2rem]">
                     <label htmlFor="password" className="block text-sm font-medium text-white">Password</label>
-                    <input type="password" id="password" className="mt-1 p-2 border-rounded w-full" value={password} onChange={(e)=> setPassword(e.target.value)} />
+                    <input type="password" id="password" className="mt-1 p-2 rounded w-full" value={password} onChange={(e)=> setPassword(e.target.value)} />
                 </div>
                 <div className="my-[2rem]">
                     <label htmlFor="confirmpassword" className="block text-sm font-medium text-white">Confirm Password</label>
-                    <input type="password" id="confirmpassword" className="mt-1 p-2 border-rounded w-full" onChange={(e)=> setConfirmPassword(e.target.value)} />
+                    <input type="password" id="confirmpassword" className="mt-1 p-2 rounded w-full" onChange={(e)=> setConfirmPassword(e.target.value)} />
                 </div>
                 <button disabled={isLoading} type="submit" className="bg-pink-500 text-white px-4 py-2 rounder cursor-pointer my-[1rem]">{isLoading? "Registering..." : "Register"}</button>
                 {isLoading && <Loader />}

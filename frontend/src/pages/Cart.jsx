@@ -65,7 +65,7 @@ const Cart = () => {
                         Items ({cartItems.reduce((acc, item)=> acc + item.qty, 0)})
                     </h2>
                     <div className="text-2xl font-bold">
-                        ${cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0).toFixed(2)}
+                        Rs {cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0).toFixed(2)}
                     </div>
                     <button className="bg-pink-500 mt-4 py-2 px-4 rounded-full text-lg w-full" disabled={cartItems.length ===0} onClick={checkOutHandler} >
                         Proceed to Checkout
