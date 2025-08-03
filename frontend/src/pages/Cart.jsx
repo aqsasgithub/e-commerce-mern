@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 import { addToCart, removeFromCart } from "../redux/features/cart/cartSlice";
-import { toast } from "react-toastify"; // Import for toast notifications
+import { toast } from "react-toastify";
+import './Cart.css';
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const Cart = () => {
 
   return (
     <>
-      <div className="container flex justify-center items-start flex-wrap mx-auto mt-8">
+      <div className="container flex justify-center items-start flex-wrap mx-auto mt-8 cart-wrapper">
         {cartItems.length === 0 ? (
           <div>
             Your cart is empty.{" "}
@@ -46,7 +47,7 @@ const Cart = () => {
               <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
 
               {cartItems.map((item) => (
-                <div key={item._id} className="flex items-center mb-[1rem] pb-2">
+                <div key={item._id} className="flex items-center mb-[1rem] pb-2 cart-item">
                   <div className="w-[5rem] h-[5rem]">
                     <img
                       src={`${import.meta.env.VITE_API_BASE}${item.image}`}
@@ -56,7 +57,7 @@ const Cart = () => {
                   </div>
 
                   <div className="flex-1 ml-4">
-                    <Link to={`/product/${item._id}`} className="text-pink-500">
+                    <Link to={`/product/${item._id}`} className="text-pink-500 cart-item-name">
                       {item.name}
                     </Link>
                     <div className="mt-2 text-white">{item.brand}</div>
@@ -65,7 +66,7 @@ const Cart = () => {
                     </div>
                   </div>
 
-                  <div className="w-24">
+                  <div className="w-24 cart-select">
                     <select
                       className="w-full p-2 border rounded text-black bg-gray-800"
                       value={item.qty}
@@ -83,7 +84,7 @@ const Cart = () => {
 
                   <div>
                     <button
-                      className="text-red-500 mr-[5rem]"
+                      className="text-red-500 mr-[5rem] cart-remove-btn"
                       onClick={() => removeFromCartHandler(item._id)}
                     >
                       <FaTrash className="ml-[1rem] mt-[.5rem]" />
@@ -92,11 +93,10 @@ const Cart = () => {
                 </div>
               ))}
 
-              <div className="mt-8 w-[40rem]">
+              <div className="mt-8 w-[40rem] cart-summary">
                 <div className="p-4 rounded-lg">
                   <h2 className="text-xl font-semibold mb-2">
-                    Items (
-                    {cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                    Items ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                   </h2>
                   <div className="text-2xl font-bold">
                     Rs{" "}

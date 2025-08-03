@@ -37,27 +37,25 @@ const Navigation = () => {
       console.error(error);
     }
   };
-
   return (
     <>
-      {/* Desktop/Tablet Sidebar */}
       <div
         style={{ zIndex: 9999 }}
-        className="hidden md:flex group fixed top-0 left-0 h-screen w-[4%] hover:w-[15%] bg-black text-white flex flex-col justify-between p-4 transition-all duration-300 overflow-x-visible overflow-y-auto"
+        className="group md:flex fixed top-0 left-0 h-screen w-[4%] hover:w-[15%] bg-black text-white flex-col justify-between p-4 transition-all duration-300 overflow-x-visible overflow-y-auto"
         id="navigation-container"
       >
         <div className="flex flex-col justify-center space-y-4">
-          <Link to="/" className="flex items-center transition-transform hover:translate-x-2">
+          <Link to="/" className="group flex items-center transition-transform hover:translate-x-2">
             <AiOutlineHome className="mr-2 mt-[3rem] icon-size" />
             <span className="hidden group-hover:inline nav-item-name mt-[3rem]">HOME</span>
           </Link>
 
-          <Link to="/shop" className="flex items-center transition-transform hover:translate-x-2">
+          <Link to="/shop" className="group flex items-center transition-transform hover:translate-x-2">
             <AiOutlineShopping className="mr-2 mt-[3rem] icon-size" />
             <span className="hidden group-hover:inline nav-item-name mt-[3rem]">SHOP</span>
           </Link>
 
-          <Link to="/cart" className="flex relative transition-transform hover:translate-x-2">
+          <Link to="/cart" className="group flex relative transition-transform hover:translate-x-2">
             <div className="flex items-center mt-[3rem]">
               <AiOutlineShoppingCart className="mr-2 icon-size" />
               <span className="hidden group-hover:inline nav-item-name">CART</span>
@@ -71,7 +69,7 @@ const Navigation = () => {
             </div>
           </Link>
 
-          <Link to="/favorite" className="flex relative transition-transform hover:translate-x-2">
+          <Link to="/favorite" className="group flex relative transition-transform hover:translate-x-2">
             <div className="flex items-center mt-[3rem]">
               <FaHeart className="mr-2 icon-size" />
               <span className="hidden group-hover:inline nav-item-name">FAVORITE</span>
@@ -184,7 +182,7 @@ const Navigation = () => {
                   className="flex items-center mt-5 transition-transform hover:translate-x-2"
                 >
                   <AiOutlineLogin className="mr-2" size={26} />
-                  <span className="hidden group-hover:inline nav-item-name">
+                  <span className="group-hover:inline nav-item-name">
                     LOGIN
                   </span>
                 </Link>
@@ -195,7 +193,7 @@ const Navigation = () => {
                   className="flex items-center mt-5 transition-transform hover:translate-x-2"
                 >
                   <AiOutlineUserAdd className="mr-2" size={26} />
-                  <span className="hidden group-hover:inline nav-item-name">
+                  <span className="group-hover:inline nav-item-name">
                     REGISTER
                   </span>
                 </Link>
@@ -205,53 +203,100 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile/Tablet Top Navigation */}
-      <div className="flex md:hidden w-full bg-black text-white px-4 py-3 justify-between items-center fixed top-0 left-0 z-50">
-        <div className="flex gap-4 items-center">
-          <Link to="/">
-            <AiOutlineHome size={24} />
+      <nav className="md:hidden fixed top-0 left-0 right-0 text-white flex justify-between items-center px-4 py-3 z-[9999]" id="top-nav">
+      <div className="flex items-center space-x-5">
+          <Link to="/" className="flex flex-col items-center">
+            <AiOutlineHome size={22} />
+            <span className="text-xs mt-1">Home</span>
           </Link>
-          <Link to="/shop">
-            <AiOutlineShopping size={24} />
+          <Link to="/shop" className="flex flex-col items-center">
+            <AiOutlineShopping size={22} />
+            <span className="text-xs mt-1">Shop</span>
           </Link>
-          <Link to="/cart" className="relative">
-            <AiOutlineShoppingCart size={24} />
+          <Link to="/cart" className="relative flex flex-col items-center">
+            <AiOutlineShoppingCart size={22} />
             {cartItems.length > 0 && (
-              <span className="absolute -top-2 -right-2 px-1 text-xs text-white bg-pink-500 rounded-full">
+              <span className="absolute -top-1 -right-2 px-1 text-xs text-white bg-pink-500 rounded-full">
                 {cartItems.reduce((a, c) => a + c.qty, 0)}
               </span>
             )}
+            <span className="text-xs mt-1">Cart</span>
           </Link>
-          <Link to="/favorite" className="relative">
-            <FaHeart size={22} />
-            <div className="absolute -top-2 -right-2">
+          <Link to="/favorite" className="relative flex flex-col items-center">
+            <FaHeart size={20} />
+            <div className="absolute -top-1 -right-2">
               <FavoritesCounts />
             </div>
+            <span className="text-xs mt-1">Favorite</span>
           </Link>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center space-x-4">
+        {userInfo && (
+  <div className="relative dropdown-wrapper">
+    <button onClick={toggleDropdown} className="flex items-center">
+      <span className="text-sm">{userInfo.username}</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={`h-4 w-4 ml-1 ${dropdownOpen ? "rotate-180" : ""}`}
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="white"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d={dropdownOpen ? "M5 15l7-7 7 7" : "M19 9l-7 7-7-7"}
+        />
+      </svg>
+    </button>
+
+    {dropdownOpen && (
+      <ul className="dropdown-menu">
+        {userInfo.isAdmin && (
+          <>
+            <li><Link to="/admin/dashboard">Dashboard</Link></li>
+            <li><Link to="/admin/productlist/:pageNumber">Products</Link></li>
+            <li><Link to="/admin/categorylist">Category</Link></li>
+            <li><Link to="/admin/orderlist">Orders</Link></li>
+            <li><Link to="/admin/userlist">Users</Link></li>
+          </>
+        )}
+        <li><Link to="/profile">Profile</Link></li>
+        <li><button onClick={logoutHandler}>Logout</button></li>
+      </ul>
+    )}
+  </div>
+)}
           {userInfo ? (
             <>
-              <span className="text-sm">{userInfo.username}</span>
-              <button onClick={logoutHandler} className="text-sm text-red-300">
+              <button
+                onClick={logoutHandler}
+                className="text-sm text-pink-500 hover:text-pink-400"
+              >
                 Logout
               </button>
             </>
           ) : (
             <>
-              <Link to="/login">
+              <Link to="/login" className="flex flex-col items-center">
                 <AiOutlineLogin size={22} />
+                <span className="text-xs mt-1">Login</span>
               </Link>
-              <Link to="/register">
+              <Link to="/register" className="flex flex-col items-center">
                 <AiOutlineUserAdd size={22} />
+                <span className="text-xs mt-1">Register</span>
               </Link>
             </>
           )}
+      
+
         </div>
-      </div>
+      </nav>
     </>
   );
 };
 
 export default Navigation;
+

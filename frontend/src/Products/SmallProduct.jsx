@@ -8,7 +8,7 @@ const SmallProduct = ({product}) => {
       <img
   src={`${import.meta.env.VITE_API_BASE}${product.image}`}
   alt={product.name}
-  className="h-auto rounded"
+  className="w-full h-auto rounded object-cover"
 />
       <HeartIcon product={product} />
       <div className="p-5">

@@ -18,7 +18,7 @@ const ProductCard = ({p}) => {
             autoClose: 2000,
           });
     }
-  return <div className="max-w-sm w-full relative bg-[#1A1A1A] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  return <div className="max-w-sm w-full mr-3 relative bg-[#1A1A1A] rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
     <section className="relative">
         <Link to={`/product/${p._id}`}>

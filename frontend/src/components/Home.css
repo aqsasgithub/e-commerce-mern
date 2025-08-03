@@ -1,0 +1,19 @@
+/* Home.css */
+.home-layout-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  /* Apply side-by-side layout from medium screen and up */
+  @media (min-width: 768px) {
+    .home-layout-container {
+      flex-direction: row;
+    }
+  
+    .left-products,
+    .right-carousel {
+      width: 50%;
+    }
+  }
+  

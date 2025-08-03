@@ -1,21 +1,23 @@
 import { useSelector } from "react-redux"
 import { selectFavoriteProduct } from "../redux/features/favorites/favoriteSlice"
-import Product from "./Product"
+import Product from "./Product.jsx"
+import './Favorites.css';
+
 
 
 const Favorites = () => {
-    const favorites = useSelector(selectFavoriteProduct);
-    // console.log(favorites);
-  return <div className="ml-[10rem]">
-    <h1 className="text-lg font-bold ml-[3rem] mt-[3rem]">
-        FAVORITE PRODUCTS 
-    </h1>
-    <div className="flex flex-wrap">
-        {favorites.map((product)=>(
-            <Product key={product._id} product={product} />
+  const favorites = useSelector(selectFavoriteProduct);
+
+  return (
+    <div className="favorites-wrapper">
+      <h1 className="favorites-heading">FAVORITE PRODUCTS</h1>
+      <div className="favorites-grid">
+        {favorites.map((product) => (
+          <Product key={product._id} product={product} />
         ))}
+      </div>
     </div>
-  </div>
-}
+  );
+};
 
 export default Favorites

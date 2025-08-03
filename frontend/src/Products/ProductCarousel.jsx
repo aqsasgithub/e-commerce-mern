@@ -26,7 +26,7 @@ const ProductCarousel = () => {
 {isLoading ? null : error ? (
         <Message variant="danger">{error?.data?.message || error.message}</Message>
       ) : products && products.length > 0 ? (
-<div className="w-full max-w-[56rem] mx-auto">
+<div className="w-full max-w-7xl mx-auto">
 <Slider {...settings}>
             {products.map(({ image, _id, name, price, description, brand, createdAt, numReviews, rating, quantity, countInStock }) => (
               <div key={_id}>
@@ -37,13 +37,13 @@ const ProductCarousel = () => {
 />
 
 <div className="flex flex-col md:flex-row justify-between gap-4 max-w-full mt-5">
-                  <div className="one">
+                  <div className="one px-2 sm:px-6">
                     <h2>{name}</h2>
                     <p>Rs {price}</p> <br /> <br />
-                    <p className="w-[25rem]">{description.substring(0, 170)}...</p>
+                    <p className="max-w-full">{description.substring(0, 170)}...</p>
                   </div>
                   <div className="flex flex-col md:flex-row justify-between gap-4 max-w-full">
-                  <div className="one">
+                  <div className="one px-2 sm:px-6">
                       <h1 className="flex items-center mb-6 w-[15rem]">
                         <FaStore className="mr-2 text-white" /> Reviews: {numReviews}
                       </h1>

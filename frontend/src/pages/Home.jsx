@@ -21,8 +21,8 @@ const Home = () => {
         </Message>
       ) : (
         <>
-          <div className="flex sm:flex-col md:flex-row justify-center items-center px-6 md:px-20 mt-10 ml-30">
-            <h1 className="text-3xl mb-4 md:mb-0 text-center md:text-left">
+       <div className="w-full max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4 px-4 md:px-20 mt-10">            <h1 className="text-3xl mb-4 md:mb-0 text-center md:text-left">
               Special Products
             </h1>
 
@@ -32,6 +32,7 @@ const Home = () => {
             >
               Shop
             </Link>
+          </div>
           </div>
 
           <div className="flex justify-center flex-wrap mt-[2rem]">
