@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import '../../index.css';
+import './Login.css';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useLoginMutation } from "../../redux/api/userApiSlice.js";
@@ -47,9 +47,9 @@ const Login =()=>{
     
 
     return <div>
-    <section className="pl-[10rem] flex flex-wrap">
-    <img src="/login.svg" className="h-[40rem] w-[35%] mr-[3rem] mt-[5rem] xl-block md-hidden sm-hidden rounded-lg" alt="Login image" />
-        <div className="mr-[4rem] mt-[5rem]">
+<section className="flex flex-col lg:flex-row items-center justify-between w-full max-w-6xl px-4 lg:px-8 gap-6 py-10">
+{/* <img src="/login.svg" className="h-[30rem] w-[25%] mr-[3rem] mt-[5rem] xl-block md-hidden sm-hidden rounded-lg login-img" alt="Login image" /> */}
+        <div className="mt-8 w-full lg:mt-[5rem] lg:mr-[4rem] lg:w-[55%] login-form-container">
         <h1 className="text-2xl font-semibold mb-4">Sign In</h1>
         <form className="container w-[40rem]" onSubmit={submitHandler}>
             <div className="my-[2rem]">

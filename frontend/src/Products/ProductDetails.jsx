@@ -12,6 +12,7 @@ import HeartIcon from "./HeartIcon"
 import Ratings from "./Ratings"     
 import ProductsTab from "./ProductsTab"
 import { addToCart } from "../redux/features/cart/cartSlice"
+import "./ProductDetails.css";
 
 const ProductDetails = () => {
     const {id: productId} = useParams();
@@ -46,27 +47,27 @@ navigate('/cart');
     }
   return <>
   <div>
-    <Link to="/" className="text-white font-semibold hover:underline ml-[10rem]">
+    <Link to="/" className="text-white font-semibold hover:underline ml-[10rem] go-back-link">
     Go Back
     </Link>
   </div>
   {isLoading ? (<Loader />): error ? (<Message variant="danger">{error?.data?.message || error.message}</Message>) : (
     <>
-    <div className="flex flex-wrap relatice items-between ml=[2rem] ml-[10rem]">
+    <div className="flex flex-wrap relative items-between ml=[2rem] ml-[10rem] product-container">
         <div>
         <img
   src={`${import.meta.env.VITE_API_BASE}${product.image}`}
   alt={product.name}
-  className="w-full xl:w-[50rem] lg:w-[45rem] md:w-[30rem] sm:w-[20rem] mr-[2rem]"
+  className="w-full xl:w-[50rem] lg:w-[45rem] md:w-[30rem] sm:w-[20rem] mr-[2rem] product-image"
 />
             <HeartIcon product={product} />
         </div>
         <div className="flex flex-col justify-between">
             <h2 className="text-2xl font-semibold">{product.name}</h2>
-            <p className="my-4 xl:w-[35rem] lg:w-[35rem] md:w-[30rem] text-[#B0B0B0]">{product.description}</p>
+            <p className="my-4 xl:w-[35rem] lg:w-[35rem] md:w-[30rem] text-[#B0B0B0] product-description">{product.description}</p>
             <p className="text-5xl my-4 font-extrabold">{product.price}</p>
-            <div className="flex items-center justify-between w-[20rem]">
-                <div className="one">
+            <div className="flex items-center justify-between w-[20rem] info-container">
+            <div className="one">
                 <h1 className="flex items-center mb-6">
                     <FaStore className="mr-2 text-white" /> Brand:{" "}
                     {product.brand}
@@ -93,17 +94,22 @@ navigate('/cart');
                     </h1>
                 </div>
             </div>
-            <div className="flex justify-between flex-wrap">
+            <div className="flex items-center gap-4 flex-wrap ratings-select">
             <Ratings value={product.rating} text={`${product.numReviews} reviews`} />
             {product.countInStock > 0 && (
                 <div>
-                    <select value={qty} onChange={e => setQty(e.target.value)} className="p-2 w-[6rem] rounded-lg text-black">
-                        {[...Array(product.countInStock).keys()].map((x)=>(
-                        <option value={x + 1} key={x + 1}>
-                            { x + 1}
-                        </option>
-                        ))}
-                    </select>
+                   <select
+  value={qty}
+  onChange={e => setQty(e.target.value)}
+  className="p-2 w-[6rem] rounded-lg text-white bg-gray-800"
+>
+  {[...Array(product.countInStock).keys()].map((x) => (
+    <option value={x + 1} key={x + 1}>
+      {x + 1}
+    </option>
+  ))}
+</select>
+
                 </div>
             )}
             </div>
@@ -111,7 +117,7 @@ navigate('/cart');
                 <button onClick={addToCartHandler} disabled={product.countInStock ===0} className="bg-pink-600 text-white py-2 px-4 rounded-lg mt-4 md:mt-0">Add To Cart</button>
             </div>
         </div>
-        <div className="mt-[5rem] container flex flex-wrap items-start justify-betwee ml-[10rem]">
+        <div className="mt-[5rem] container flex flex-wrap items-start justify-betwee ml-[10rem] products-tab-container">
             <ProductsTab loadingProductReview={loadingProductReview}
             userInfo={userInfo}
             submitHandler={submitHandler}

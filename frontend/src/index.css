@@ -23,12 +23,10 @@ html {
   height: 100%;
   overflow-x: hidden;
 }
-/* index.css */
 .main-content {
-  margin-left: 15%; /* default for medium and large */
+  margin-left: 15%; 
 }
 
-/* Remove margin on small screens */
 @media (max-width: 767px) {
   .main-content {
     margin-left: 0 !important;

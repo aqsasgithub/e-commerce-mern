@@ -18,17 +18,18 @@ const ProductsTab = ({loadingProductsReview, userInfo, submitHandler, rating, se
   }
   return <>
     <div className="flex flex-col md:flex-row">
-        <section className="mr-[5rem]">
-            <div className={`flex-1 p-4 cursor-pointer text-lg ${activeTab === 1 ? "font-bold" : ""}`} onClick={()=> handleTabClick(1)}>
-                Write Your Review
-            </div>
-            <div className={`flex-1 p-4 cursor-pointer text-lg ${activeTab === 2? "font-bold" : ""}`} onClick={()=> handleTabClick(2)}>
-               All Reviews
-            </div>
-            <div className={`flex-1 p-4 cursor-pointer text-lg ${activeTab === 3 ? "font-bold" : ""}`} onClick={()=> handleTabClick(3)}>
-            Related Products
-            </div>
-        </section>
+    <section className="flex flex-wrap gap-2 mb-4">
+  <div className={`cursor-pointer text-lg px-4 py-2 rounded ${activeTab === 1 ? "font-bold bg-gray-700 text-white" : "bg-gray-800 text-gray-400"}`} onClick={() => handleTabClick(1)}>
+    Write Your Review
+  </div>
+  <div className={`cursor-pointer text-lg px-4 py-2 rounded ${activeTab === 2 ? "font-bold bg-gray-700 text-white" : "bg-gray-800 text-gray-400"}`} onClick={() => handleTabClick(2)}>
+    All Reviews
+  </div>
+  <div className={`cursor-pointer text-lg px-4 py-2 rounded ${activeTab === 3 ? "font-bold bg-gray-700 text-white" : "bg-gray-800 text-gray-400"}`} onClick={() => handleTabClick(3)}>
+    Related Products
+  </div>
+</section>
+
         <section>
             {activeTab === 1 &&(
                 <div className="mt-4">
@@ -36,7 +37,7 @@ const ProductsTab = ({loadingProductsReview, userInfo, submitHandler, rating, se
                         <form onSubmit={submitHandler}>
                             <div className="my-2">
                                 <label htmlFor="rating" className="block text-xl mb-2">Rating</label>
-                                <select id="rating" required value={rating} onChange={e => setRating(e.target.value)} className="p-2 border rounded-lg xl:w-[40rem] text-black">
+                                <select id="rating" required value={rating} onChange={e => setRating(e.target.value)} className="p-2 border rounded-lg xl:w-[40rem] text-white bg-gray-800">
                                     <option value="1">Inferior</option>
                                     <option value="2">Decent</option>
                                     <option value="3">Great</option>

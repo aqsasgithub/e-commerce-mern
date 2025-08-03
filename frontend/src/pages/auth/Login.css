@@ -1,0 +1,33 @@
+@media (max-width: 1024px) {
+  .login-section {
+    padding-left: 2rem !important;
+    flex-direction: column !important;
+    align-items: center;
+  }
+
+  .login-img {
+    width: 80% !important;
+    max-width: 300px !important;
+    height: auto !important;
+    margin: 2rem 0 !important;
+  }
+
+  .login-form-container {
+    width: 90% !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .login-section {
+    padding-left: 1rem !important;
+  }
+
+  .login-img {
+    display: none !important;
+  }
+
+  .login-form-container {
+    width: 100% !important;
+  }
+}

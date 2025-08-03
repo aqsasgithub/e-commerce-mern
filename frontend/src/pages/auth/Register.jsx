@@ -44,11 +44,15 @@ const Register = ()=>{
                 toast.error(error?.data?.message || "An error occurred, please try again");
             }
     }
-    return <section className="pl-[10rem] flex flex-wrap">
-        <img src='/register.svg' className="h-[35rem] w-[35%] mr-[3rem] mt-[5rem] xl-block md-hidden sm-hidden rounded-lg" alt="Login image" />
-        <div className="mr-[4rem] mt-[5rem]">
+    return <section className="flex flex-wrap px-4 sm:px-8 md:px-[4rem] lg:px-[8rem] xl:px-[10rem]">
+<img
+  src="/register.svg"
+  alt="Register image"
+  className="hidden lg:block lg:h-[35rem] lg:w-[35%] lg:mr-[3rem] lg:mt-[5rem] rounded-lg"
+/>
+        <div className="mt-8 w-full lg:mt-[5rem] lg:mr-[4rem] lg:w-[55%]">
             <h1 className="text-2xl font-semibold mb-4">Register</h1>
-            <form onSubmit={submitHandler} className="container w-[40rem]">
+            <form onSubmit={submitHandler} className="w-full max-w-[40rem]">
                 <div className="my-[2rem]">
                     <label htmlFor="name" className="block text-sm font-medium text-white">Name</label>
                     <input type="text" id="name" className="mt-1 p-2 rounded w-full"  value={username} onChange={(e)=> setUsername(e.target.value)}></input>
