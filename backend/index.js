@@ -19,18 +19,17 @@ const port = process.env.PORT || 3000;
 connectDB();
 const app = express();
 
-// ✅ Updated CORS configuration
 app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
-      'https://mern-e-commercee.netlify.app',       // production
-      'http://localhost:3000',                      // local dev
+      'https://mern-e-commercee.netlify.app',     
+      'http://localhost:5173',                      
     ];
 
     const isAllowed =
       !origin ||
       allowedOrigins.includes(origin) ||
-      /^https:\/\/[a-z0-9]+--mern-e-commercee\.netlify\.app$/.test(origin); // deploy previews
+      /^https:\/\/[a-z0-9]+--mern-e-commercee\.netlify\.app$/.test(origin);
 
     if (isAllowed) {
       callback(null, true);
