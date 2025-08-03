@@ -55,7 +55,7 @@ const Navigation = () => {
             <span className="hidden group-hover:inline nav-item-name mt-[3rem]">SHOP</span>
           </Link>
 
-          <Link to="/cart" className="group flex relative transition-transform hover:translate-x-2">
+          <Link to="/cart" className="group flex relative transition-transform hover:translate-x-2 badge-container">
             <div className="flex items-center mt-[3rem]">
               <AiOutlineShoppingCart className="mr-2 icon-size" />
               <span className="hidden group-hover:inline nav-item-name">CART</span>
@@ -69,7 +69,7 @@ const Navigation = () => {
             </div>
           </Link>
 
-          <Link to="/favorite" className="group flex relative transition-transform hover:translate-x-2">
+          <Link to="/favorite" className="group flex relative transition-transform hover:translate-x-2 badge-count">
             <div className="flex items-center mt-[3rem]">
               <FaHeart className="mr-2 icon-size" />
               <span className="hidden group-hover:inline nav-item-name">FAVORITE</span>

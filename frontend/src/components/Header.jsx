@@ -19,7 +19,6 @@ const Header = () => {
     <>
     <div className="home-layout-container flex flex-col md:flex-row gap-8 justify-between px-4 w-full max-w-7xl mx-auto">
       
-      {/* Left Section - Small Products Grid */}
       <div className="w-full md:w-1/2">
         <div className="grid grid-cols-2 gap-4">
           {data.map(product => (

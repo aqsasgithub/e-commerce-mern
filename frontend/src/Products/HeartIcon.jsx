@@ -7,6 +7,8 @@ import {
   getFavoritesFromLocalStorage,
   removeFavoriteFromLocalStorage,
 } from "../Utils/localStorage.js";
+import './HeartIcon.css';
+
 
 const HeartIcon = ({ product }) => {
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ const HeartIcon = ({ product }) => {
   return (
     <div className="absolute top-2 right-5 cursor-pointer" onClick={toggleFavorites}>
     {isFavorite ? (
-      <FaHeart className="text-pink-500" style={{ color: 'pink-500' }} />
+      <FaHeart className="pink-heart" />
     ) : (
       <FaRegHeart className="text-white" />
     )}
