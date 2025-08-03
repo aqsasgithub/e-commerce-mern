@@ -13,21 +13,37 @@ import uploadRoutes from './routes/uploadRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import formidable from 'express-formidable';
 
-
 dotenv.config();
 const port = process.env.PORT || 3000;
 
 connectDB();
 const app = express();
 
+// ✅ Updated CORS configuration
 app.use(cors({
-    origin: 'https://688e4db05b713c00089baa16--mern-e-commercee.netlify.app',
-    credentials: true
-  }));
-app.use(express.json());
-app.use(express.urlencoded({ extended:true }));
-app.use(cookieParser());
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'https://mern-e-commercee.netlify.app',       // production
+      'http://localhost:3000',                      // local dev
+    ];
 
+    const isAllowed =
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      /^https:\/\/[a-z0-9]+--mern-e-commercee\.netlify\.app$/.test(origin); // deploy previews
+
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed for origin: ' + origin));
+    }
+  },
+  credentials: true
+}));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use('/api/users', userRoutes);
 app.use('/api/category', categoryRoutes);
@@ -39,4 +55,4 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.listen(port, ()=> console.log(`Server is listening on port: ${port}`)); 
+app.listen(port, () => console.log(`Server is listening on port: ${port}`));
