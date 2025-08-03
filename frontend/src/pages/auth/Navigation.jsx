@@ -271,12 +271,6 @@ const Navigation = () => {
 )}
           {userInfo ? (
             <>
-              <button
-                onClick={logoutHandler}
-                className="text-sm text-pink-500 hover:text-pink-400"
-              >
-                Logout
-              </button>
             </>
           ) : (
             <>
